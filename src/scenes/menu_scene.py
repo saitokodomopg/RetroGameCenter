@@ -20,7 +20,7 @@ GAMES = [
     ("SNAKE", None, "snake"),
     ("SPACE INVADERS", None, "space_invaders"),
     ("BREAKOUT", None, "breakout"),
-    ("WAGYAN LAND", None, "wagyan_land"),
+    ("WAGYAN LAND", "wagyan_land", "wagyan_land"),
     ("PINBALL", None, "pinball"),
     ("MARIO KART", None, "mario_kart"),
 ]
