@@ -94,6 +94,12 @@ class SoundBank:
             "icebreak": ([(1400, 700, 0.06), (900, 500, 0.05)], "square", 0.22),
             # ポヨン：敵を踏む軽い跳ね音
             "stomp": ([(500, 900, 0.05), (900, 400, 0.06)], "triangle", 0.26),
+            # ポン：パドルでボールを打ち返す音
+            "paddle_hit": ([(300, 500, 0.045)], "square", 0.24),
+            # コツ：壁・天井で跳ね返る軽い音
+            "wall_hit": ([(500, 400, 0.035)], "square", 0.18),
+            # パリン：ブロックが割れる音
+            "brick_break": ([(900, 300, 0.07)], "square", 0.24),
         }
         for name, (segments, wave, vol) in recipes.items():
             try:

@@ -19,7 +19,7 @@ GAMES = [
     ("PAC-MAN", None, None),
     ("SNAKE", None, "snake"),
     ("SPACE INVADERS", None, "space_invaders"),
-    ("BREAKOUT", None, "breakout"),
+    ("BREAKOUT", "block_breaker", "breakout"),
     ("WAGYAN LAND", None, "wagyan_land"),
     ("PINBALL", None, "pinball"),
     ("MARIO KART", None, "mario_kart"),

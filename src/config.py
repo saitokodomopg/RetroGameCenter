@@ -73,6 +73,38 @@ TILESETS_DIR = "assets/tilesets"
 SPRITES_DIR = "assets/sprites"
 
 # ==========================================================================
+# ブロック崩し（BREAKOUT）設定 — 本作専用。既存定数と衝突しないよう BREAKOUT_ 接頭辞
+# ==========================================================================
+
+# ブロック配置
+BREAKOUT_ROWS = 6
+BREAKOUT_COLS = 10
+BREAKOUT_BRICK_W = 72
+BREAKOUT_BRICK_H = 24
+BREAKOUT_BRICK_GAP = 4
+BREAKOUT_BRICK_TOP = 60
+
+# パドル
+BREAKOUT_PADDLE_W = 90
+BREAKOUT_PADDLE_H = 14
+BREAKOUT_PADDLE_Y = 560
+BREAKOUT_PADDLE_SPEED = 340       # pixels/sec
+
+# ボール
+BREAKOUT_BALL_RADIUS = 8
+BREAKOUT_BALL_SPEED = 320         # pixels/sec（一定値を維持）
+BREAKOUT_MAX_BOUNCE_ANGLE = 60    # 度（パドル端で跳ね返る最大角）
+
+# スコア・ライフ
+BREAKOUT_START_LIVES = 3
+
+# 行ごとの色・得点（上から）
+BREAKOUT_ROW_COLORS = [
+    COLOR_RED, COLOR_RED, COLOR_YELLOW, COLOR_YELLOW, COLOR_GREEN, COLOR_GREEN,
+]
+BREAKOUT_ROW_SCORES = [50, 50, 30, 30, 10, 10]
+
+# ==========================================================================
 # ドンキーコング '81（DK81）設定 — 本作専用。既存定数と衝突しないよう DK81_ 接頭辞
 # ==========================================================================
 
