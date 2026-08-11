@@ -477,6 +477,60 @@ def _draw_mario_kart(surf, w, h):
     surf.blit(q, q.get_rect(center=ib.center))
 
 
+def _draw_puyo_puyo(surf, w, h):
+    """盤面に積まれた色とりどりの目つきぷよ。連鎖しそうな並びにする。"""
+    surf.fill((14, 14, 26))
+    cell = max(8, int(min(w, h) * 0.17))
+    cols = w // cell
+    rows = h // cell
+    ox = (w - cols * cell) // 2
+    oy = h - rows * cell - 2
+    # うっすらグリッド
+    grid = (32, 32, 48)
+    for c in range(cols + 1):
+        pygame.draw.line(surf, grid, (ox + c * cell, oy),
+                         (ox + c * cell, oy + rows * cell), 1)
+    for r in range(rows + 1):
+        pygame.draw.line(surf, grid, (ox, oy + r * cell),
+                         (ox + cols * cell, oy + r * cell), 1)
+
+    def puyo(c, r, color):
+        cx = ox + c * cell + cell // 2
+        cy = oy + r * cell + cell // 2
+        rad = cell // 2 - max(1, cell // 10)
+        pygame.draw.circle(surf, color, (cx, cy), rad)
+        dark = tuple(max(0, v - 70) for v in color)
+        pygame.draw.circle(surf, dark, (cx, cy), rad, 1)
+        light = tuple(min(255, v + 70) for v in color)
+        pygame.draw.circle(surf, light, (cx - rad // 3, cy - rad // 3),
+                           max(1, rad // 4))
+        # 目（ぷよぷよらしさの要）
+        er = max(2, rad // 3)
+        pr = max(1, er // 2)
+        for sx in (-1, 1):
+            ex = cx + sx * (rad // 3)
+            ey = cy - rad // 8
+            pygame.draw.circle(surf, COLOR_WHITE, (ex, ey), er)
+            pygame.draw.circle(surf, (20, 20, 30), (ex, ey), pr)
+
+    R, G, B, Y = ((235, 70, 70), (70, 210, 90), (70, 120, 235), (240, 210, 60))
+    # 下2段を積み上げ、上に落下中の組ぷよを1組浮かせる
+    bottom = rows - 1
+    layout = [
+        (0, bottom, R), (1, bottom, R), (2, bottom, G), (3, bottom, B),
+        (0, bottom - 1, R), (1, bottom - 1, Y), (2, bottom - 1, G),
+        (0, bottom - 2, Y),
+    ]
+    for (c, r, color) in layout:
+        if 0 <= c < cols and 0 <= r < rows:
+            puyo(c, r, color)
+    # 落下中の組ぷよ（縦2個）
+    fc = min(cols - 2, 3)
+    if rows >= 4:
+        puyo(fc, 0, G)
+        puyo(fc, 1, G)
+
+
 def _draw_coming_soon(surf, w, h):
     """準備中ゲーム用のプレースホルダ（?マークと点線枠）。"""
     surf.fill((18, 18, 24))
@@ -498,6 +552,7 @@ _DRAWERS = {
     "tetris": _draw_tetris,
     "ice_climber": _draw_ice_climber,
     "snake": _draw_snake,
+    "puyo_puyo": _draw_puyo_puyo,
     "space_invaders": _draw_space_invaders,
     "breakout": _draw_breakout,
     "wagyan_land": _draw_wagyan_land,
