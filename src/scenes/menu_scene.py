@@ -19,6 +19,7 @@ GAMES = [
     ("PAC-MAN", None, None),
     ("SNAKE", "snake", "snake"),
     ("PUYO PUYO", "puyo_puyo", "puyo_puyo"),
+    ("DUCK HUNT", "duck_hunt", "duck_hunt"),
     ("SPACE INVADERS", None, "space_invaders"),
     ("BREAKOUT", None, "breakout"),
     ("WAGYAN LAND", None, "wagyan_land"),

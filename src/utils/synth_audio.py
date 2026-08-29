@@ -94,6 +94,8 @@ class SoundBank:
             "icebreak": ([(1400, 700, 0.06), (900, 500, 0.05)], "square", 0.22),
             # ポヨン：敵を踏む軽い跳ね音
             "stomp": ([(500, 900, 0.05), (900, 400, 0.06)], "triangle", 0.26),
+            # パンッ：銃声（短い下降ノイズ的な破裂音）
+            "shoot": ([(1200, 80, 0.05), (400, 60, 0.04)], "square", 0.30),
         }
         for name, (segments, wave, vol) in recipes.items():
             try:

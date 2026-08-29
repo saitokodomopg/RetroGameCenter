@@ -14,6 +14,7 @@ from scenes.donkey_kong_81_scene import DonkeyKong81Scene
 from scenes.ice_climber_scene import IceClimberScene
 from scenes.snake_scene import SnakeScene
 from scenes.puyo_puyo_scene import PuyoPuyoScene
+from scenes.duck_hunt_scene import DuckHuntScene
 from scenes.game_over_scene import GameOverScene
 from scenes.clear_scene import ClearScene
 
@@ -39,6 +40,7 @@ class GameManager:
         self.scene_manager.register_scene("ice_climber", IceClimberScene())
         self.scene_manager.register_scene("snake", SnakeScene())
         self.scene_manager.register_scene("puyo_puyo", PuyoPuyoScene())
+        self.scene_manager.register_scene("duck_hunt", DuckHuntScene())
         self.scene_manager.change_scene("menu")
 
     def handle_events(self):
