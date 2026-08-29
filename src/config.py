@@ -170,3 +170,70 @@ ICE_COLOR_TOPI_DARK = (180, 185, 205)
 ICE_COLOR_ICICLE = (200, 235, 250)    # つらら
 ICE_COLOR_CONDOR = (60, 55, 70)       # コンドル（黒紫）
 ICE_COLOR_CLOUD = (235, 240, 250)     # 山頂の雲足場
+
+# ==========================================================================
+# スペースインベーダー（SI）設定 — 本作専用。SI_ 接頭辞で既存定数と衝突を避ける
+# ==========================================================================
+
+# 自機
+SI_PLAYER_W = 36
+SI_PLAYER_H = 18
+SI_PLAYER_Y = 540              # 自機の上端 y
+SI_PLAYER_SPEED = 240           # pixels/sec（左右移動）
+SI_PLAYER_LIVES = 3
+SI_RESPAWN_INVINCIBLE = 1.5     # 復帰後の無敵時間（秒）
+SI_DEATH_TIME = 1.2             # やられ演出の時間（秒）
+
+# 自弾
+SI_BULLET_W = 3
+SI_BULLET_H = 14
+SI_BULLET_SPEED = 640           # pixels/sec（上方向）
+
+# インベーダー編隊
+SI_INV_ROWS = 5
+SI_INV_COLS = 11
+SI_INV_W = 32
+SI_INV_H = 22
+SI_INV_GAP_X = 16
+SI_INV_GAP_Y = 16
+SI_INV_TOP = 80                 # 編隊の初期 y（最上段の上端）
+SI_INV_BASE_SPEED = 40          # pixels/sec（残数が多いときの横移動速度）
+SI_INV_MAX_SPEED = 260          # pixels/sec（残り1体のときの速度上限）
+SI_INV_DROP = 12                # 端に到達したときの下降量（px）
+SI_INV_INVASION_Y = SI_PLAYER_Y - 40  # ここまで下降したら侵略＝即ゲームオーバー
+SI_INV_ROW_SCORES = [30, 20, 20, 10, 10]  # 上段から順（原作準拠のイメージ）
+
+# 敵弾
+SI_ENEMY_BULLET_W = 3
+SI_ENEMY_BULLET_H = 14
+SI_ENEMY_BULLET_SPEED = 260     # pixels/sec（下方向）
+SI_ENEMY_BULLET_MAX = 3         # 画面内に同時に存在できる敵弾数の上限
+SI_ENEMY_SHOOT_INTERVAL = 0.55  # 敵弾を撃つか判定する間隔（秒）
+
+# シールド（バンカー）
+SI_SHIELD_CELL = 8              # シールド1ブロックの辺（px）
+SI_SHIELD_Y = SI_PLAYER_Y - 110  # シールド上端の y
+SI_SHIELD_COUNT = 4
+
+# UFO（ボーナス）
+SI_UFO_W = 40
+SI_UFO_H = 18
+SI_UFO_Y = 50
+SI_UFO_SPEED = 130              # pixels/sec
+SI_UFO_MIN_INTERVAL = 12.0      # 出現間隔（秒・最短）
+SI_UFO_MAX_INTERVAL = 22.0      # 出現間隔（秒・最長）
+SI_UFO_SCORES = [50, 100, 150, 300]
+
+# 色（SI 専用）
+SI_COLOR_PLAYER = (90, 210, 255)
+SI_COLOR_BULLET_PLAYER = (255, 255, 255)
+SI_COLOR_BULLET_ENEMY = (255, 210, 80)
+SI_COLOR_INVADER_ROWS = [
+    (255, 90, 120),   # 1段目（最上段・高得点）
+    (255, 180, 60),
+    (255, 180, 60),
+    (90, 230, 120),
+    (90, 230, 120),
+]
+SI_COLOR_SHIELD = (90, 220, 110)
+SI_COLOR_UFO = (230, 80, 220)

@@ -18,7 +18,7 @@ GAMES = [
     ("ICE CLIMBER", "ice_climber", "ice_climber"),
     ("PAC-MAN", None, None),
     ("SNAKE", None, "snake"),
-    ("SPACE INVADERS", None, "space_invaders"),
+    ("SPACE INVADERS", "space_invaders", "space_invaders"),
     ("BREAKOUT", None, "breakout"),
     ("WAGYAN LAND", None, "wagyan_land"),
     ("PINBALL", None, "pinball"),
