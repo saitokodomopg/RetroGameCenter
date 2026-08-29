@@ -12,6 +12,7 @@ from scenes.donkey_kong_scene import DonkeyKongScene
 from scenes.tetris_scene import TetrisScene
 from scenes.donkey_kong_81_scene import DonkeyKong81Scene
 from scenes.ice_climber_scene import IceClimberScene
+from scenes.wagyan_land_scene import WagyanLandScene
 from scenes.snake_scene import SnakeScene
 from scenes.puyo_puyo_scene import PuyoPuyoScene
 from scenes.game_over_scene import GameOverScene
@@ -37,6 +38,7 @@ class GameManager:
         self.scene_manager.register_scene("clear", ClearScene())
         self.scene_manager.register_scene("donkey_kong_81", DonkeyKong81Scene())
         self.scene_manager.register_scene("ice_climber", IceClimberScene())
+        self.scene_manager.register_scene("wagyan_land", WagyanLandScene())
         self.scene_manager.register_scene("snake", SnakeScene())
         self.scene_manager.register_scene("puyo_puyo", PuyoPuyoScene())
         self.scene_manager.change_scene("menu")

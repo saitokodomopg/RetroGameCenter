@@ -21,7 +21,7 @@ GAMES = [
     ("PUYO PUYO", "puyo_puyo", "puyo_puyo"),
     ("SPACE INVADERS", None, "space_invaders"),
     ("BREAKOUT", None, "breakout"),
-    ("WAGYAN LAND", None, "wagyan_land"),
+    ("WAGYAN LAND", "wagyan_land", "wagyan_land"),
     ("PINBALL", None, "pinball"),
     ("MARIO KART", None, "mario_kart"),
 ]
