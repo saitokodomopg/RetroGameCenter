@@ -262,3 +262,42 @@ COLOR_PUYO_GRID = (38, 38, 52)   # 盤面のグリッド線
 COLOR_PUYO_FRAME = (120, 130, 170)  # 盤面の枠
 COLOR_PUYO_EYE = (255, 255, 255)    # 目の白目
 COLOR_PUYO_PUPIL = (20, 20, 30)     # 目の瞳
+
+# ==========================================================================
+# イカジャンプ（IKA）設定 — 本作専用。IKA_ 接頭辞で既存定数と衝突を避ける
+# ==========================================================================
+
+# プレイヤー（イカ）
+IKA_PLAYER_W = 28
+IKA_PLAYER_H = 32
+IKA_PLAYER_SPEED = 240         # pixels/sec（左右移動）
+IKA_GRAVITY = 900              # pixels/sec^2（落下加速度）
+IKA_BOUNCE_POWER = 560         # pixels/sec（着地時の自動バウンド初速）
+
+# 足場
+IKA_PLATFORM_W = 70
+IKA_PLATFORM_H = 14
+IKA_PLATFORM_GAP_MIN = 70      # 足場間の最小垂直間隔（px）
+IKA_PLATFORM_GAP_MAX = 150     # 足場間の最大垂直間隔（px。バウンドで届く高さ内に収める）
+IKA_MAX_DX = 220               # 前の足場からの最大水平オフセット（px。バウンドで届く範囲内）
+IKA_MOVING_SPEED = 70          # pixels/sec（動く足場の往復速度）
+IKA_CRUMBLE_TIME = 0.35        # 崩れる足場が着地後に消えるまでの時間（秒）
+
+# マグマ（追跡してくる床）
+IKA_MAGMA_START_MARGIN = 260   # 開始時、カメラ下端からさらに下に置く距離（px）
+IKA_MAGMA_BASE_SPEED = 45      # pixels/sec（マグマの基本上昇速度）
+IKA_MAGMA_SPEED_RAMP = 0.02    # 高度(px)ごとの上昇速度の増加量
+IKA_MAGMA_MAX_SPEED = 260      # pixels/sec（上昇速度の上限）
+
+# 色（IKA 専用）
+IKA_COLOR_SKY_TOP = (60, 20, 40)             # 空グラデ上（火山の夕暮れ）
+IKA_COLOR_SKY_BOT = (120, 50, 30)            # 空グラデ下
+IKA_COLOR_MAGMA_CORE = (200, 40, 10)         # マグマ本体
+IKA_COLOR_MAGMA_TOP = (255, 160, 40)         # マグマ表面の輝き
+IKA_COLOR_PLATFORM_NORMAL = (120, 90, 70)    # 通常足場（岩）
+IKA_COLOR_PLATFORM_MOVING = (80, 140, 200)   # 動く足場（青系）
+IKA_COLOR_PLATFORM_CRUMBLE = (180, 150, 60)  # 崩れる足場（黄系）
+IKA_COLOR_PLATFORM_CRUMBLE_BROKEN = (90, 70, 40)  # 崩れかけ
+IKA_COLOR_SQUID = (235, 100, 140)            # イカの体（ピンク）
+IKA_COLOR_SQUID_DARK = (170, 60, 90)         # イカの縁取り
+IKA_COLOR_SQUID_EYE = (255, 255, 255)        # イカの目
