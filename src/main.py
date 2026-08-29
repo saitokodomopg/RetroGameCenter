@@ -13,6 +13,8 @@ from scenes.tetris_scene import TetrisScene
 from scenes.donkey_kong_81_scene import DonkeyKong81Scene
 from scenes.ice_climber_scene import IceClimberScene
 from scenes.block_breaker_scene import BlockBreakerScene
+from scenes.snake_scene import SnakeScene
+from scenes.puyo_puyo_scene import PuyoPuyoScene
 from scenes.game_over_scene import GameOverScene
 from scenes.clear_scene import ClearScene
 
@@ -37,6 +39,8 @@ class GameManager:
         self.scene_manager.register_scene("donkey_kong_81", DonkeyKong81Scene())
         self.scene_manager.register_scene("ice_climber", IceClimberScene())
         self.scene_manager.register_scene("block_breaker", BlockBreakerScene())
+        self.scene_manager.register_scene("snake", SnakeScene())
+        self.scene_manager.register_scene("puyo_puyo", PuyoPuyoScene())
         self.scene_manager.change_scene("menu")
 
     def handle_events(self):
