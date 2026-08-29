@@ -22,7 +22,7 @@ GAMES = [
     ("BREAKOUT", None, "breakout"),
     ("WAGYAN LAND", None, "wagyan_land"),
     ("PINBALL", None, "pinball"),
-    ("MARIO KART", None, "mario_kart"),
+    ("MARIO KART", "mario_kart", "mario_kart"),
 ]
 
 # グリッド設定

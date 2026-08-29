@@ -237,3 +237,103 @@ SI_COLOR_INVADER_ROWS = [
 ]
 SI_COLOR_SHIELD = (90, 220, 110)
 SI_COLOR_UFO = (230, 80, 220)
+
+# ==========================================================================
+# マリオカート（MK）設定 — 本作専用。MK_ 接頭辞で既存定数と衝突を避ける
+# フェーズA：Mode7風レンダリング＋運転＋タイム計測（CPU・アイテムなし）
+# ==========================================================================
+
+# コース形状（スタジアム型）
+MK_TRACK_STRAIGHT_HALF = 900     # 直線区間の半長
+MK_TRACK_RADIUS = 500            # 両端の半円半径（中心線基準）
+MK_TRACK_ROAD_HALF_WIDTH = 260   # 路面の半幅
+MK_TRACK_CURB_WIDTH = 40         # 縁石帯の幅
+MK_CURB_STRIPE_LEN = 120         # 縁石の縞の周期（弧長パラメータ基準）
+MK_LAPS = 3                      # レースの周回数
+MK_LAP_MIN_PROGRESS_RATIO = 0.85  # 直前のラップ判定からこの割合(×2π)以上
+                                   # 進行角度が進んでいないと1周と認めない
+                                   # （スタート地点近くでの偽1周カウント防止）
+
+# カメラ・投影
+MK_CAM_HEIGHT = 220              # カメラの高さ
+MK_CAM_BACK = 260                # カートから後方に引く距離
+MK_HORIZON_Y = 260               # 地平線の画面 y 座標
+MK_PROJ_SCALE = 464              # 疑似遠近スケール（最前列 z ≈ 300 になるよう逆算）
+MK_FOCAL_LENGTH = 280            # 画角相当の焦点距離
+
+# カート物理
+MK_MAX_SPEED = 620               # pixels/sec（世界座標上の最高速度）
+MK_MAX_REVERSE_SPEED = -200      # pixels/sec（後退の最高速度）
+MK_OFFTRACK_MAX_SPEED = 220      # コースアウト時の速度上限
+MK_ACCEL = 420                   # pixels/sec^2（加速）
+MK_BRAKE = 620                   # pixels/sec^2（ブレーキ）
+MK_DRAG = 0.6                    # 速度に比例する空気抵抗係数（毎秒）
+MK_OFFTRACK_EXTRA_DRAG = 2.2     # コースアウト時に追加される減衰係数（毎秒）
+MK_TURN_RATE = 2.6               # 操舵の角速度係数（rad/sec 相当）
+MK_TURN_MIN_SPEED = 15           # この速度未満では操舵が効かない
+
+# 色（MK 専用）
+MK_COLOR_SKY_TOP = (110, 180, 240)
+MK_COLOR_SKY_BOTTOM = (200, 225, 250)
+MK_COLOR_ROAD = (70, 70, 78)
+MK_COLOR_ROAD_DARK = (60, 60, 68)
+MK_COLOR_CURB_A = (220, 60, 60)
+MK_COLOR_CURB_B = (240, 240, 240)
+MK_COLOR_GRASS = (60, 170, 80)
+MK_COLOR_GRASS_DARK = (50, 150, 70)
+MK_COLOR_KART_BODY = (220, 40, 40)
+MK_COLOR_KART_TRIM = (250, 220, 60)
+
+# ==========================================================================
+# マリオカート フェーズB＋C：CPU対戦・アイテム
+# ==========================================================================
+
+# ビルボード投影（他カート・アイテム類を疑似3Dの平面スプライトとして描画）
+MK_BILLBOARD_MIN_Z = 40          # これより近い（≒背後含む）と描画しない
+MK_BILLBOARD_MAX_Z = 6000        # これより遠いと描画しない
+MK_KART_WORLD_SIZE = 140         # カート1台の見かけ上のワールドサイズ
+MK_ITEMBOX_WORLD_SIZE = 90
+MK_BANANA_WORLD_SIZE = 50
+MK_SHELL_WORLD_SIZE = 55
+
+# CPU
+MK_CPU_COUNT = 3
+MK_CPU_LOOKAHEAD_BASE = 260.0    # 目標点を進めるペースの基準（world units/sec）
+MK_CPU_STEER_GAIN = 0.6          # 操舵角の正規化係数（小さいほど敏感）
+MK_CPU_ACCEL_ANGLE_LIMIT = 1.0   # この角度誤差(rad)を超えたらアクセルを緩める
+MK_CPU_SPEED_SCALE_MIN = 0.82    # CPUごとの最高速のばらつき（下限）
+MK_CPU_SPEED_SCALE_MAX = 1.00    # CPUごとの最高速のばらつき（上限）
+MK_CPU_START_GAP = 120           # グリッドスタートでのカート間隔（後方へ）
+
+# アイテムボックス
+MK_ITEM_BOX_COUNT = 4
+MK_ITEM_BOX_RADIUS = 60          # 取得判定半径
+MK_ITEM_BOX_RESPAWN = 6.0        # 再出現までの秒数
+
+# バナナ
+MK_BANANA_HIT_RADIUS = 45
+MK_BANANA_LIFETIME = 20.0        # 使われず放置される場合の寿命（秒、安全策）
+MK_BANANA_DROP_OFFSET = 70       # カート後方の設置距離
+
+# こうら
+MK_SHELL_SPEED = 780.0           # pixels/sec
+MK_SHELL_HIT_RADIUS = 40
+MK_SHELL_LIFETIME = 4.0          # 秒（何にも当たらなければ消える）
+MK_SHELL_SPAWN_OFFSET = 70       # カート前方の発射位置オフセット（自分に当たらないように）
+
+# スピンアウト
+MK_STUN_DURATION = 1.4           # 操作不能になる時間（秒）
+
+# CPU のアイテム使用
+MK_CPU_ITEM_USE_DELAY_MIN = 0.4
+MK_CPU_ITEM_USE_DELAY_MAX = 2.0
+
+# 色
+MK_COLOR_CPU = [
+    (60, 120, 230),
+    (60, 190, 90),
+    (230, 170, 40),
+]
+MK_COLOR_ITEMBOX = (240, 200, 40)
+MK_COLOR_BANANA = (235, 210, 40)
+MK_COLOR_SHELL = (60, 200, 90)

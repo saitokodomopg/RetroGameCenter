@@ -13,6 +13,7 @@ from scenes.tetris_scene import TetrisScene
 from scenes.donkey_kong_81_scene import DonkeyKong81Scene
 from scenes.ice_climber_scene import IceClimberScene
 from scenes.space_invaders_scene import SpaceInvadersScene
+from scenes.mario_kart_scene import MarioKartScene
 from scenes.game_over_scene import GameOverScene
 from scenes.clear_scene import ClearScene
 
@@ -37,6 +38,7 @@ class GameManager:
         self.scene_manager.register_scene("donkey_kong_81", DonkeyKong81Scene())
         self.scene_manager.register_scene("ice_climber", IceClimberScene())
         self.scene_manager.register_scene("space_invaders", SpaceInvadersScene())
+        self.scene_manager.register_scene("mario_kart", MarioKartScene())
         self.scene_manager.change_scene("menu")
 
     def handle_events(self):
