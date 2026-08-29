@@ -337,3 +337,123 @@ MK_COLOR_CPU = [
 MK_COLOR_ITEMBOX = (240, 200, 40)
 MK_COLOR_BANANA = (235, 210, 40)
 MK_COLOR_SHELL = (60, 200, 90)
+
+# ==========================================================================
+# ワギャンランド（WAGYAN）設定 — 本作専用。WAGYAN_ 接頭辞で既存定数と衝突を避ける
+# ==========================================================================
+
+# ワールド・地形
+WAGYAN_WORLD_WIDTH = 3200      # ステージ全体の横幅（px）
+WAGYAN_GROUND_Y = 520          # 地面の上面 y（画面座標・縦スクロールなし）
+WAGYAN_GOAL_X = 3040           # ゴール（ボス戦への入口）の x 座標
+
+# プレイヤー（ワギャン）
+WAGYAN_PLAYER_W = 30
+WAGYAN_PLAYER_H = 32
+WAGYAN_PLAYER_SPEED = 150       # pixels/sec（左右移動）
+WAGYAN_JUMP_POWER = 480         # pixels/sec（ジャンプ初速）
+WAGYAN_GRAVITY = 1300           # pixels/sec^2（落下加速度）
+WAGYAN_RESPAWN_INVINCIBLE = 1.5  # 復帰後の無敵時間（秒）
+WAGYAN_DEATH_TIME = 1.4         # やられ演出の時間（秒）
+WAGYAN_START_LIVES = 3
+
+# 音波攻撃（レベル 1〜4 = ワッ・ギャ・ガー・ギャー）
+WAGYAN_VOICE_LABELS = ["WA!", "GYA!", "GAA!", "GYAA!"]
+WAGYAN_VOICE_RANGE = [130, 170, 210, 260]     # レベルごとの届く距離（px）
+WAGYAN_VOICE_STUN = [2.0, 2.6, 3.4, 4.4]      # レベルごとのしびれ時間（秒）
+WAGYAN_VOICE_COOLDOWN = 0.35    # 音波の連射間隔（秒）
+WAGYAN_VOICE_ACTIVE_TIME = 0.15  # 音波の判定が有効な時間（秒）
+
+# 敵
+WAGYAN_ENEMY_W = 30
+WAGYAN_ENEMY_H = 26
+WAGYAN_ENEMY_SPEED = 50         # pixels/sec（歩行速度）
+
+# スコア
+WAGYAN_PARALYZE_SCORE = 150     # 敵をしびれさせた時の得点
+WAGYAN_WAGYANIZER_SCORE = 300   # ワギャナイザー取得時の得点
+WAGYAN_BOSS_WIN_BONUS = 3000    # ボス戦勝利ボーナス
+
+# 色（ワギャン専用）
+WAGYAN_COLOR_SKY = (60, 150, 200)          # 空（水色）
+WAGYAN_COLOR_GROUND = (90, 160, 70)        # 地面（草・緑）
+WAGYAN_COLOR_GROUND_DARK = (60, 110, 45)   # 地面の土（陰）
+WAGYAN_COLOR_PLATFORM = (200, 150, 90)     # 浮遊足場（木）
+WAGYAN_COLOR_PLATFORM_DARK = (150, 105, 55)
+WAGYAN_COLOR_BODY = (60, 190, 90)          # ワギャンの体（緑）
+WAGYAN_COLOR_BODY_DARK = (30, 140, 60)
+WAGYAN_COLOR_BELLY = (230, 230, 150)       # ワギャンのお腹（黄緑白）
+WAGYAN_COLOR_ENEMY = (200, 70, 90)         # 敵（赤紫）
+WAGYAN_COLOR_ENEMY_STUNNED = (150, 150, 170)  # しびれ中（グレー）
+WAGYAN_COLOR_WAVE = (255, 220, 60)         # 音波（黄）
+WAGYAN_COLOR_WAGYANIZER = (210, 210, 220)  # ワギャナイザー（拡声器・銀）
+WAGYAN_COLOR_GOAL = (240, 90, 60)          # ゴール旗
+
+# ボス戦（知恵比べミニゲーム）
+WAGYAN_COLOR_BOSS = (110, 60, 150)         # Dr.デビル（紫）
+WAGYAN_COLOR_CARD_BACK = (70, 80, 130)     # 神経衰弱：裏面
+WAGYAN_COLOR_CARD_FRONT = (235, 235, 245)  # 神経衰弱：表面
+WAGYAN_COLOR_CARD_SYMBOLS = [
+    (230, 60, 60), (60, 190, 90), (60, 120, 230), (240, 200, 40),
+    (230, 120, 200), (60, 200, 200),
+]
+
+# ==========================================================================
+# ヘビゲーム（SNAKE）設定 — 本作専用。SNAKE_ 接頭辞で既存定数と衝突を避ける
+# ==========================================================================
+
+# グリッド・レイアウト
+SNAKE_CELL = 20                 # 1 マスの辺（px）
+SNAKE_COLS = 40                 # 横マス数（40*20=800）
+SNAKE_ROWS = 28                 # 縦マス数（28*20=560）
+SNAKE_HUD_HEIGHT = 40           # 上部 HUD 帯の高さ（px、560+40=600）
+SNAKE_START_LEN = 3             # 開始時の体長
+
+# スコア・速度
+SNAKE_FOOD_SCORE = 10           # エサ 1 個の得点
+SNAKE_BASE_INTERVAL = 0.14      # 開始時の移動間隔（秒/マス）
+SNAKE_SPEED_STEP = 0.004        # エサ 1 個ごとの短縮量
+SNAKE_MIN_INTERVAL = 0.06       # 移動間隔の下限（最高速度）
+
+# 色（SNAKE 専用）
+COLOR_SNAKE_HEAD = (90, 230, 110)   # ヘビの頭（明るい緑）
+COLOR_SNAKE_BODY = (40, 170, 70)    # ヘビの胴（緑）
+COLOR_SNAKE_FOOD = (230, 70, 70)    # エサ（赤）
+
+# ==========================================================================
+# ぷよぷよ（PUYO）設定 — 本作専用。PUYO_ 接頭辞で既存定数と衝突を避ける
+# ==========================================================================
+
+# 盤面・レイアウト（6列×12行は原作準拠）
+PUYO_COLS = 6                  # 盤面の列数
+PUYO_ROWS = 12                 # 盤面の行数
+PUYO_CELL = 40                 # 1マスの辺（px）→ 240×480px
+PUYO_BOARD_X = 60              # 盤面左上 X（右パネル幅を確保するため左寄せ）
+PUYO_BOARD_Y = 60              # 盤面左上 Y
+PUYO_PANEL_X = 340             # 右サイドパネルの左端 X
+PUYO_SPAWN_COL = 2             # 組ぷよの出現列（0始まり＝3列目）
+
+# 落下・演出
+PUYO_BASE_FALL = 0.7           # レベル1の落下間隔（秒）
+PUYO_FALL_STEP = 0.05          # レベルごとの短縮量
+PUYO_MIN_FALL = 0.10           # 落下間隔の下限
+PUYO_SOFT_DROP = 0.04          # ソフトドロップ間隔（秒）
+PUYO_VANISH_TIME = 0.45        # 消去演出（点滅）の時間（秒）
+PUYO_DROP_TIME = 0.18          # 連鎖中の落下演出の時間（秒）
+PUYO_LEVEL_POPS = 30           # このぷよ数を消すごとにレベルアップ
+
+# スコア
+PUYO_POP_SCORE = 10            # ぷよ1個あたりの基礎点
+# 連鎖ボーナス倍率。2連鎖目で一気に跳ね上がるのが原作の手応え。
+# テーブル長を超える連鎖は最後の値で頭打ちにする。
+PUYO_CHAIN_BONUS = [1, 8, 16, 32, 64, 96, 128, 160]
+
+# 色（PUYO 専用・4色）
+COLOR_PUYO_R = (235, 70, 70)     # 赤
+COLOR_PUYO_G = (70, 210, 90)     # 緑
+COLOR_PUYO_B = (70, 120, 235)    # 青
+COLOR_PUYO_Y = (240, 210, 60)    # 黄
+COLOR_PUYO_GRID = (38, 38, 52)   # 盤面のグリッド線
+COLOR_PUYO_FRAME = (120, 130, 170)  # 盤面の枠
+COLOR_PUYO_EYE = (255, 255, 255)    # 目の白目
+COLOR_PUYO_PUPIL = (20, 20, 30)     # 目の瞳

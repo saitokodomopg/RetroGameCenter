@@ -17,10 +17,11 @@ GAMES = [
     ("TETRIS", "tetris", "tetris"),
     ("ICE CLIMBER", "ice_climber", "ice_climber"),
     ("PAC-MAN", None, None),
-    ("SNAKE", None, "snake"),
+    ("SNAKE", "snake", "snake"),
+    ("PUYO PUYO", "puyo_puyo", "puyo_puyo"),
     ("SPACE INVADERS", "space_invaders", "space_invaders"),
     ("BREAKOUT", None, "breakout"),
-    ("WAGYAN LAND", None, "wagyan_land"),
+    ("WAGYAN LAND", "wagyan_land", "wagyan_land"),
     ("PINBALL", None, "pinball"),
     ("MARIO KART", "mario_kart", "mario_kart"),
 ]
