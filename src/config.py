@@ -457,3 +457,68 @@ COLOR_PUYO_GRID = (38, 38, 52)   # 盤面のグリッド線
 COLOR_PUYO_FRAME = (120, 130, 170)  # 盤面の枠
 COLOR_PUYO_EYE = (255, 255, 255)    # 目の白目
 COLOR_PUYO_PUPIL = (20, 20, 30)     # 目の瞳
+
+# ==========================================================================
+# ピンボール（PINBALL）設定 — 本作専用。PINBALL_ 接頭辞で既存定数と衝突を避ける
+# 物理は pymunk 等を使わず、既存ゲーム群と同じ自前の速度・当たり判定ベース
+# ==========================================================================
+
+# 盤面レイアウト（画面内に左詰めで配置し、右にサイドパネル）
+PINBALL_BOARD_X = 40
+PINBALL_BOARD_Y = 24
+PINBALL_BOARD_W = 360            # 盤面の幅（ローカル座標の右端）
+PINBALL_BOARD_H = 552            # 盤面の高さ（ローカル座標の下端）
+PINBALL_LANE_W = 46              # プランジャーレーンの幅（盤面右端の帯）
+PINBALL_LANE_GAP_TOP = 90        # このY座標より上はレーンとメイン盤面が繋がっている
+PINBALL_FUNNEL_TOP_Y = 340       # ここからフリッパーへ向けて壁が内側へ絞り込む
+
+# ボール・物理
+PINBALL_BALL_RADIUS = 8
+PINBALL_GRAVITY = 850            # pixels/sec^2
+PINBALL_MAX_SPEED = 1300         # pixels/sec（すり抜け防止のための上限）
+PINBALL_WALL_RESTITUTION = 0.55  # 通常の壁での反発係数（1.0で完全弾性）
+
+# プランジャー（発射・レーン復帰判定）
+PINBALL_LANE_SETTLE_SPEED = 40   # pixels/sec（この速度未満でレーン内に戻ったら再発射可能にする）
+# レーンは縦に長く（レーン床からレーン開口部＝盤面上部の合流点まで約500px）、
+# 重力(PINBALL_GRAVITY)に打ち勝って上部の合流点まで届かせるにはある程度の初速が要る。
+# 弱いタップ（最小速度）ではレーン内で失速して戻る＝実機のプランジャーと同じ挙動。
+PINBALL_LAUNCH_MIN_SPEED = 420   # pixels/sec（タップ即離しの最小発射速度。レーン内で失速する）
+PINBALL_LAUNCH_MAX_SPEED = 1080  # pixels/sec（最大まで溜めた時の発射速度。盤面上部まで届く）
+PINBALL_LAUNCH_CHARGE_TIME = 0.6  # 秒（この時間押し込み続けると最大まで溜まる）
+
+# ポップバンパー
+PINBALL_BUMPER_RADIUS = 16
+PINBALL_BUMPER_BOOST = 420       # 命中時に法線方向へ加える速度（pixels/sec）
+PINBALL_BUMPER_SCORE = 100
+PINBALL_BUMPER_COOLDOWN = 0.15   # 秒（連続加点防止）
+
+# スリングショット（フリッパー脇の跳ね返し壁）
+PINBALL_SLINGSHOT_BOOST = 380
+PINBALL_SLINGSHOT_SCORE = 50
+PINBALL_SLINGSHOT_COOLDOWN = 0.15
+
+# フリッパー
+PINBALL_FLIPPER_LENGTH = 74
+PINBALL_FLIPPER_THICKNESS = 9    # 当たり判定用の太さ（半径）
+PINBALL_FLIPPER_REST_ANGLE = -18   # 度（静止時：軽く下向き）
+PINBALL_FLIPPER_ACTIVE_ANGLE = 60  # 度（作動時：跳ね上げ）
+PINBALL_FLIPPER_ANGULAR_SPEED = 780  # 度/秒（作動の速さ）
+PINBALL_FLIPPER_KICK = 1.6       # フリッパーの角速度からボールへ伝える力の倍率
+# 盤面中央からの左右オフセット。静止時のフリッパー先端の当たり判定円
+# （半径 = PINBALL_BALL_RADIUS + PINBALL_FLIPPER_THICKNESS）が左右で重ならず、
+# ボールが確実にドレインの隙間を通り抜けられるだけの間隔を確保する値
+PINBALL_FLIPPER_PIVOT_OFFSET = 102
+
+# ライフ
+PINBALL_START_BALLS = 3
+
+# 色
+PINBALL_COLOR_BG = (16, 16, 26)
+PINBALL_COLOR_WALL = (150, 160, 200)
+PINBALL_COLOR_LANE_BG = (26, 26, 40)
+PINBALL_COLOR_BALL = (235, 235, 240)
+PINBALL_COLOR_FLIPPER = (230, 70, 70)
+PINBALL_COLOR_BUMPER = (240, 200, 40)
+PINBALL_COLOR_BUMPER_HIT = (255, 255, 255)
+PINBALL_COLOR_SLINGSHOT = (60, 190, 230)
