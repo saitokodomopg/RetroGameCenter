@@ -528,3 +528,53 @@ IKA_COLOR_PLATFORM_CRUMBLE_BROKEN = (90, 70, 40)  # 崩れかけ
 IKA_COLOR_SQUID = (235, 100, 140)            # イカの体（ピンク）
 IKA_COLOR_SQUID_DARK = (170, 60, 90)         # イカの縁取り
 IKA_COLOR_SQUID_EYE = (255, 255, 255)        # イカの目
+
+# ==========================================================================
+# ダックハント風ガンシューティング（GUN）設定 — 本作専用。GUN_ 接頭辞で既存定数と衝突を避ける
+# ==========================================================================
+
+# ラウンド進行
+GUN_BASE_TARGETS = 6            # 1ラウンドの基本出題数
+GUN_MAX_TARGETS = 14            # 出題数の上限
+GUN_CLEAR_RATIO = 0.6           # クリアに必要な命中率
+GUN_AMMO_MARGIN = 3             # 出題数に対する弾の余剰（ミス許容ぶん）
+GUN_BASE_TIME = 40.0            # 基本制限時間（秒）
+GUN_MIN_TIME = 18.0             # 制限時間の下限
+GUN_TIME_STEP = 2.0             # ラウンドごとの制限時間の短縮量
+
+# 的の挙動
+GUN_BASE_LIFETIME = 2.4         # 的の基本寿命（秒）
+GUN_MIN_LIFETIME = 1.1          # 的の寿命の下限
+GUN_LIFETIME_STEP = 0.1         # ラウンドごとの寿命短縮量
+GUN_SPEED_STEP = 0.15           # ラウンドごとの速度倍率の増分
+GUN_AIM_ASSIST = 6              # 当たり判定の甘さ（px）
+
+# 演出タイミング
+GUN_INTRO_TIME = 1.0            # ラウンド開始演出の時間（秒）
+GUN_RESULT_TIME = 1.2           # ラウンド結果表示の時間（秒）
+GUN_SPAWN_DELAY = 0.5           # 的が消えてから次が出るまでの間隔（秒）
+GUN_HIT_FLASH_TIME = 0.35       # 命中時、点滅させてから消えるまでの時間（秒）
+
+# レイアウト（上下の HUD 帯を除いたところが的の可動域）
+GUN_TOP_BAR_H = 40               # 上部帯（スコア・残弾・残り時間）の高さ
+GUN_BOTTOM_BAR_H = 56            # 下部帯（ラウンド・命中数・操作説明）の高さ
+
+# 得点
+GUN_ROUND_CLEAR_BONUS = 100     # ラウンドクリアボーナス（round_no 倍）
+
+# 的の種類ごとのパラメータ（速度・得点・当たり判定半径・出現重み）
+GUN_TARGET_TABLE = {
+    "BIRD": {"speed": 160, "score": 100, "radius": 22, "weight": 3},
+    "UFO":  {"speed": 260, "score": 300, "radius": 18, "weight": 1},
+}
+
+# 色（GUN 専用）
+COLOR_GUN_SKY = (110, 170, 235)      # 空
+COLOR_GUN_SKY_HORIZON = (170, 210, 245)  # 地平線付近の明るい空
+COLOR_GUN_GROUND = (90, 160, 80)     # 草原
+COLOR_GUN_CLOUD = (240, 245, 250)    # 雲
+COLOR_GUN_RETICLE = (230, 30, 30)    # 照準
+COLOR_GUN_BIRD = (150, 90, 40)       # BIRD の本体（茶）
+COLOR_GUN_BIRD_WING = (110, 60, 25)  # BIRD の翼（濃茶）
+COLOR_GUN_UFO = (170, 220, 90)       # UFO の本体（黄緑）
+COLOR_GUN_UFO_DOME = (220, 245, 200) # UFO のドーム

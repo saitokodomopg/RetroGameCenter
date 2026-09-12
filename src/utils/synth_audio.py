@@ -113,6 +113,8 @@ class SoundBank:
             "paralyze": ([(700, 300, 0.06), (700, 300, 0.06)], "triangle", 0.24),
             # ブブー：不正解・ミニゲーム敗北の低い下降音
             "wrong": ([(300, 120, 0.28)], "square", 0.26),
+            # パンッ：銃声（ダックハントの射撃音。インベーダーの "shoot" とは別物）
+            "gun_shot": ([(1200, 80, 0.05), (400, 60, 0.04)], "square", 0.30),
         }
         for name, (segments, wave, vol) in recipes.items():
             try:
