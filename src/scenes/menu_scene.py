@@ -19,11 +19,11 @@ GAMES = [
     ("PAC-MAN", None, None),
     ("SNAKE", "snake", "snake"),
     ("PUYO PUYO", "puyo_puyo", "puyo_puyo"),
-    ("SPACE INVADERS", None, "space_invaders"),
+    ("SPACE INVADERS", "space_invaders", "space_invaders"),
     ("BREAKOUT", None, "breakout"),
-    ("WAGYAN LAND", None, "wagyan_land"),
+    ("WAGYAN LAND", "wagyan_land", "wagyan_land"),
     ("PINBALL", None, "pinball"),
-    ("MARIO KART", None, "mario_kart"),
+    ("MARIO KART", "mario_kart", "mario_kart"),
 ]
 
 # グリッド設定
