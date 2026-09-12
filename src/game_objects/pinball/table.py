@@ -14,6 +14,7 @@ from config import (
     PINBALL_FLIPPER_LENGTH, PINBALL_FLIPPER_THICKNESS, PINBALL_FLIPPER_REST_ANGLE,
     PINBALL_FLIPPER_ACTIVE_ANGLE, PINBALL_FLIPPER_ANGULAR_SPEED,
     PINBALL_FLIPPER_KICK, PINBALL_FLIPPER_PIVOT_OFFSET, PINBALL_LANE_SETTLE_SPEED,
+    PINBALL_FLIPPER_HIT_SCORE, PINBALL_FLIPPER_HIT_COOLDOWN,
 )
 
 # 1フレームでの移動量がこれを超えたら、すり抜け防止のためサブステップに分割する
@@ -114,7 +115,7 @@ class Table:
         各サブステップで「重力による移動 → 衝突解決」を行う。
 
         戻り値: このフレームで発生したイベント名と得点のリスト
-        （"bumper" / "slingshot"。フリッパー接触は無得点のため含めない）
+        （"bumper" / "slingshot" / "flipper"）
         """
         for flipper in self.flippers:
             flipper.update(dt)
@@ -175,6 +176,9 @@ class Table:
                 tangential_speed = flipper.angular_velocity * r_len
                 ball.vx += perp[0] * tangential_speed * PINBALL_FLIPPER_KICK
                 ball.vy += perp[1] * tangential_speed * PINBALL_FLIPPER_KICK
+                if flipper.hit_cooldown <= 0.0:
+                    flipper.hit_cooldown = PINBALL_FLIPPER_HIT_COOLDOWN
+                    events.append(("flipper", PINBALL_FLIPPER_HIT_SCORE))
 
         return events
 

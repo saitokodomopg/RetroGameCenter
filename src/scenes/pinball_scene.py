@@ -22,7 +22,7 @@ from config import (
     PINBALL_COLOR_LANE_BG,
 )
 
-_EVENT_SE = {"bumper": "stomp", "slingshot": "invader_hit"}
+_EVENT_SE = {"bumper": "stomp", "slingshot": "invader_hit", "flipper": "rotate"}
 
 
 class PinballScene(BaseScene):

@@ -541,6 +541,8 @@ PINBALL_FLIPPER_KICK = 1.6       # フリッパーの角速度からボールへ
 # （半径 = PINBALL_BALL_RADIUS + PINBALL_FLIPPER_THICKNESS）が左右で重ならず、
 # ボールが確実にドレインの隙間を通り抜けられるだけの間隔を確保する値
 PINBALL_FLIPPER_PIVOT_OFFSET = 102
+PINBALL_FLIPPER_HIT_SCORE = 20   # フリッパーでボールに触れた時の得点
+PINBALL_FLIPPER_HIT_COOLDOWN = 0.15  # 秒（連続加点防止）
 
 # ライフ
 PINBALL_START_BALLS = 3

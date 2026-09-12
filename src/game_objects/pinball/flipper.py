@@ -16,6 +16,7 @@ class Flipper:
         self.angle = self.rest_angle
         self.angular_velocity = 0.0
         self.is_active = False
+        self.hit_cooldown = 0.0  # 得点の連続加算防止（Table 側で参照・更新）
 
     def set_active(self, active):
         self.is_active = active
@@ -28,6 +29,7 @@ class Flipper:
         elif self.angle > target:
             self.angle = max(target, self.angle - self.angular_speed * dt)
         self.angular_velocity = (self.angle - prev) / dt if dt > 0 else 0.0
+        self.hit_cooldown = max(0.0, self.hit_cooldown - dt)
 
     def direction(self):
         if self.side == "left":
