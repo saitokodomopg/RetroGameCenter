@@ -12,28 +12,30 @@ from config import (
 # (表示名, シーンキー or None=準備中, サムネイルキー)
 # シーンキーが None（準備中）でも、サムネイルキーがあれば専用サムネイルを表示する。
 GAMES = [
-    ("DONKEY KONG", "donkey_kong", "donkey_kong"),
     ("DONKEY KONG '81", "donkey_kong_81", "donkey_kong_81"),
     ("TETRIS", "tetris", "tetris"),
     ("ICE CLIMBER", "ice_climber", "ice_climber"),
     ("PAC-MAN", None, None),
     ("SNAKE", "snake", "snake"),
     ("PUYO PUYO", "puyo_puyo", "puyo_puyo"),
+    ("IKA JUMP", "ika_jump", "ika_jump"),
+    ("DUCK HUNT", "duck_hunt", "duck_hunt"),
     ("SPACE INVADERS", "space_invaders", "space_invaders"),
-    ("BREAKOUT", None, "breakout"),
+    ("BREAKOUT", "block_breaker", "breakout"),
     ("WAGYAN LAND", "wagyan_land", "wagyan_land"),
     ("PINBALL", None, "pinball"),
     ("MARIO KART", "mario_kart", "mario_kart"),
 ]
 
 # グリッド設定
-# カード枚数が増えたため 4 列に変更し、3 行で画面（600px）に収める。
-COLS = 4
-CARD_W = 178
-CARD_H = 112
-GAP_X = 16
-GAP_Y = 16
-GRID_TOP = 208
+# カード枚数が 13 枚になり 4 列だと 4 行目が画面（600px）からはみ出すため、
+# 5 列に変更して 3 行（5/5/3）で収める。最終行は _card_rect が中央寄せする。
+COLS = 5
+CARD_W = 138
+CARD_H = 96
+GAP_X = 12
+GAP_Y = 14
+GRID_TOP = 210
 
 
 class MenuScene(BaseScene):
@@ -42,6 +44,7 @@ class MenuScene(BaseScene):
         self.font_title = pygame.font.Font(None, 76)
         self.font_card = pygame.font.Font(None, 30)
         self.font_small = pygame.font.Font(None, 26)
+        self.font_tiny = pygame.font.Font(None, 21)  # 長いタイトル用（5列化でカードが細い）
         self.selected = 0
         self.time = 0.0
 
@@ -126,9 +129,12 @@ class MenuScene(BaseScene):
         pygame.draw.rect(screen, band_color, band)
         label_color = COLOR_YELLOW if selected else (
             COLOR_WHITE if playable else COLOR_GRAY)
+        # カード幅に収まるまで段階的にフォントを小さくする
         label = self.font_card.render(name, True, label_color)
-        if label.get_width() > rect.width - 10:
-            label = self.font_small.render(name, True, label_color)
+        for font in (self.font_small, self.font_tiny):
+            if label.get_width() <= rect.width - 10:
+                break
+            label = font.render(name, True, label_color)
         screen.blit(label, label.get_rect(center=band.center))
 
         if not playable:

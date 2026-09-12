@@ -73,6 +73,38 @@ TILESETS_DIR = "assets/tilesets"
 SPRITES_DIR = "assets/sprites"
 
 # ==========================================================================
+# ブロック崩し（BREAKOUT）設定 — 本作専用。既存定数と衝突しないよう BREAKOUT_ 接頭辞
+# ==========================================================================
+
+# ブロック配置
+BREAKOUT_ROWS = 6
+BREAKOUT_COLS = 10
+BREAKOUT_BRICK_W = 72
+BREAKOUT_BRICK_H = 24
+BREAKOUT_BRICK_GAP = 4
+BREAKOUT_BRICK_TOP = 60
+
+# パドル
+BREAKOUT_PADDLE_W = 90
+BREAKOUT_PADDLE_H = 14
+BREAKOUT_PADDLE_Y = 560
+BREAKOUT_PADDLE_SPEED = 340       # pixels/sec
+
+# ボール
+BREAKOUT_BALL_RADIUS = 8
+BREAKOUT_BALL_SPEED = 320         # pixels/sec（一定値を維持）
+BREAKOUT_MAX_BOUNCE_ANGLE = 60    # 度（パドル端で跳ね返る最大角）
+
+# スコア・ライフ
+BREAKOUT_START_LIVES = 3
+
+# 行ごとの色・得点（上から）
+BREAKOUT_ROW_COLORS = [
+    COLOR_RED, COLOR_RED, COLOR_YELLOW, COLOR_YELLOW, COLOR_GREEN, COLOR_GREEN,
+]
+BREAKOUT_ROW_SCORES = [50, 50, 30, 30, 10, 10]
+
+# ==========================================================================
 # ドンキーコング '81（DK81）設定 — 本作専用。既存定数と衝突しないよう DK81_ 接頭辞
 # ==========================================================================
 
@@ -457,3 +489,92 @@ COLOR_PUYO_GRID = (38, 38, 52)   # 盤面のグリッド線
 COLOR_PUYO_FRAME = (120, 130, 170)  # 盤面の枠
 COLOR_PUYO_EYE = (255, 255, 255)    # 目の白目
 COLOR_PUYO_PUPIL = (20, 20, 30)     # 目の瞳
+
+# ==========================================================================
+# イカジャンプ（IKA）設定 — 本作専用。IKA_ 接頭辞で既存定数と衝突を避ける
+# ==========================================================================
+
+# プレイヤー（イカ）
+IKA_PLAYER_W = 28
+IKA_PLAYER_H = 32
+IKA_PLAYER_SPEED = 240         # pixels/sec（左右移動）
+IKA_GRAVITY = 900              # pixels/sec^2（落下加速度）
+IKA_BOUNCE_POWER = 560         # pixels/sec（着地時の自動バウンド初速）
+
+# 足場
+IKA_PLATFORM_W = 70
+IKA_PLATFORM_H = 14
+IKA_PLATFORM_GAP_MIN = 70      # 足場間の最小垂直間隔（px）
+IKA_PLATFORM_GAP_MAX = 150     # 足場間の最大垂直間隔（px。バウンドで届く高さ内に収める）
+IKA_MAX_DX = 220               # 前の足場からの最大水平オフセット（px。バウンドで届く範囲内）
+IKA_MOVING_SPEED = 70          # pixels/sec（動く足場の往復速度）
+IKA_CRUMBLE_TIME = 0.35        # 崩れる足場が着地後に消えるまでの時間（秒）
+
+# マグマ（追跡してくる床）
+IKA_MAGMA_START_MARGIN = 260   # 開始時、カメラ下端からさらに下に置く距離（px）
+IKA_MAGMA_BASE_SPEED = 45      # pixels/sec（マグマの基本上昇速度）
+IKA_MAGMA_SPEED_RAMP = 0.02    # 高度(px)ごとの上昇速度の増加量
+IKA_MAGMA_MAX_SPEED = 260      # pixels/sec（上昇速度の上限）
+
+# 色（IKA 専用）
+IKA_COLOR_SKY_TOP = (60, 20, 40)             # 空グラデ上（火山の夕暮れ）
+IKA_COLOR_SKY_BOT = (120, 50, 30)            # 空グラデ下
+IKA_COLOR_MAGMA_CORE = (200, 40, 10)         # マグマ本体
+IKA_COLOR_MAGMA_TOP = (255, 160, 40)         # マグマ表面の輝き
+IKA_COLOR_PLATFORM_NORMAL = (120, 90, 70)    # 通常足場（岩）
+IKA_COLOR_PLATFORM_MOVING = (80, 140, 200)   # 動く足場（青系）
+IKA_COLOR_PLATFORM_CRUMBLE = (180, 150, 60)  # 崩れる足場（黄系）
+IKA_COLOR_PLATFORM_CRUMBLE_BROKEN = (90, 70, 40)  # 崩れかけ
+IKA_COLOR_SQUID = (235, 100, 140)            # イカの体（ピンク）
+IKA_COLOR_SQUID_DARK = (170, 60, 90)         # イカの縁取り
+IKA_COLOR_SQUID_EYE = (255, 255, 255)        # イカの目
+
+# ==========================================================================
+# ダックハント風ガンシューティング（GUN）設定 — 本作専用。GUN_ 接頭辞で既存定数と衝突を避ける
+# ==========================================================================
+
+# ラウンド進行
+GUN_BASE_TARGETS = 6            # 1ラウンドの基本出題数
+GUN_MAX_TARGETS = 14            # 出題数の上限
+GUN_CLEAR_RATIO = 0.6           # クリアに必要な命中率
+GUN_AMMO_MARGIN = 3             # 出題数に対する弾の余剰（ミス許容ぶん）
+GUN_BASE_TIME = 40.0            # 基本制限時間（秒）
+GUN_MIN_TIME = 18.0             # 制限時間の下限
+GUN_TIME_STEP = 2.0             # ラウンドごとの制限時間の短縮量
+
+# 的の挙動
+GUN_BASE_LIFETIME = 2.4         # 的の基本寿命（秒）
+GUN_MIN_LIFETIME = 1.1          # 的の寿命の下限
+GUN_LIFETIME_STEP = 0.1         # ラウンドごとの寿命短縮量
+GUN_SPEED_STEP = 0.15           # ラウンドごとの速度倍率の増分
+GUN_AIM_ASSIST = 6              # 当たり判定の甘さ（px）
+
+# 演出タイミング
+GUN_INTRO_TIME = 1.0            # ラウンド開始演出の時間（秒）
+GUN_RESULT_TIME = 1.2           # ラウンド結果表示の時間（秒）
+GUN_SPAWN_DELAY = 0.5           # 的が消えてから次が出るまでの間隔（秒）
+GUN_HIT_FLASH_TIME = 0.35       # 命中時、点滅させてから消えるまでの時間（秒）
+
+# レイアウト（上下の HUD 帯を除いたところが的の可動域）
+GUN_TOP_BAR_H = 40               # 上部帯（スコア・残弾・残り時間）の高さ
+GUN_BOTTOM_BAR_H = 56            # 下部帯（ラウンド・命中数・操作説明）の高さ
+
+# 得点
+GUN_ROUND_CLEAR_BONUS = 100     # ラウンドクリアボーナス（round_no 倍）
+
+# 的の種類ごとのパラメータ（速度・得点・当たり判定半径・出現重み）
+GUN_TARGET_TABLE = {
+    "BIRD": {"speed": 160, "score": 100, "radius": 22, "weight": 3},
+    "UFO":  {"speed": 260, "score": 300, "radius": 18, "weight": 1},
+}
+
+# 色（GUN 専用）
+COLOR_GUN_SKY = (110, 170, 235)      # 空
+COLOR_GUN_SKY_HORIZON = (170, 210, 245)  # 地平線付近の明るい空
+COLOR_GUN_GROUND = (90, 160, 80)     # 草原
+COLOR_GUN_CLOUD = (240, 245, 250)    # 雲
+COLOR_GUN_RETICLE = (230, 30, 30)    # 照準
+COLOR_GUN_BIRD = (150, 90, 40)       # BIRD の本体（茶）
+COLOR_GUN_BIRD_WING = (110, 60, 25)  # BIRD の翼（濃茶）
+COLOR_GUN_UFO = (170, 220, 90)       # UFO の本体（黄緑）
+COLOR_GUN_UFO_DOME = (220, 245, 200) # UFO のドーム

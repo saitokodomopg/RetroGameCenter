@@ -16,6 +16,10 @@ from config import (
     ICE_COLOR_SKY_TOP, ICE_COLOR_SKY_BOT, ICE_COLOR_ICE, ICE_COLOR_ICE_HI,
     ICE_COLOR_ICE_DARK, ICE_COLOR_POPO, ICE_COLOR_POPO_TRIM,
     ICE_COLOR_POPO_FACE, ICE_COLOR_CONDOR, ICE_COLOR_TOPI, ICE_COLOR_HAMMER_HEAD,
+    IKA_COLOR_SKY_TOP, IKA_COLOR_SKY_BOT, IKA_COLOR_MAGMA_CORE, IKA_COLOR_MAGMA_TOP,
+    IKA_COLOR_PLATFORM_NORMAL, IKA_COLOR_SQUID, IKA_COLOR_SQUID_EYE,
+    COLOR_GUN_SKY, COLOR_GUN_SKY_HORIZON, COLOR_GUN_GROUND, COLOR_GUN_CLOUD,
+    COLOR_GUN_RETICLE, COLOR_GUN_BIRD, COLOR_GUN_BIRD_WING,
 )
 
 _cache = {}
@@ -531,6 +535,77 @@ def _draw_puyo_puyo(surf, w, h):
         puyo(fc, 1, G)
 
 
+def _draw_ika_jump(surf, w, h):
+    """マグマが迫る中、足場を登るイカのミニ絵。"""
+    for y in range(0, h, 3):
+        t = y / h
+        col = (int(IKA_COLOR_SKY_TOP[0] + (IKA_COLOR_SKY_BOT[0] - IKA_COLOR_SKY_TOP[0]) * t),
+               int(IKA_COLOR_SKY_TOP[1] + (IKA_COLOR_SKY_BOT[1] - IKA_COLOR_SKY_TOP[1]) * t),
+               int(IKA_COLOR_SKY_TOP[2] + (IKA_COLOR_SKY_BOT[2] - IKA_COLOR_SKY_TOP[2]) * t))
+        pygame.draw.rect(surf, col, (0, y, w, 3))
+
+    # マグマ（下部）
+    magma_top = int(h * 0.76)
+    pygame.draw.rect(surf, IKA_COLOR_MAGMA_CORE, (0, magma_top, w, h - magma_top))
+    pygame.draw.rect(surf, IKA_COLOR_MAGMA_TOP, (0, magma_top, w, 4))
+
+    # 足場（斜めに配置）
+    plat_w = int(w * 0.30)
+    plat_h = max(4, int(h * 0.05))
+    platforms = [
+        (int(w * 0.08), int(h * 0.60)),
+        (int(w * 0.55), int(h * 0.42)),
+        (int(w * 0.28), int(h * 0.22)),
+    ]
+    for (px, py) in platforms:
+        pygame.draw.rect(surf, IKA_COLOR_PLATFORM_NORMAL, (px, py, plat_w, plat_h), border_radius=3)
+
+    # イカ（最上段の少し上で跳ねる）
+    ix = platforms[-1][0] + plat_w // 2
+    iy = platforms[-1][1] - int(h * 0.12)
+    ir = max(6, int(w * 0.09))
+    body = pygame.Rect(ix - ir, iy - ir, ir * 2, int(ir * 1.5))
+    pygame.draw.ellipse(surf, IKA_COLOR_SQUID, body)
+    pygame.draw.circle(surf, IKA_COLOR_SQUID_EYE, (ix + ir // 3, iy - ir // 3), max(2, ir // 4))
+    for i in range(3):
+        fx = ix - ir + i * ir
+        fy = iy + int(ir * 0.5)
+        pygame.draw.line(surf, IKA_COLOR_SQUID, (fx, fy), (fx + 3, fy + 6), 2)
+
+
+def _draw_duck_hunt(surf, w, h):
+    """空と草原を背景に、飛ぶ鳥のシルエットと照準の十字。"""
+    ground_y = int(h * 0.78)
+    surf.fill(COLOR_GUN_SKY)
+    pygame.draw.rect(surf, COLOR_GUN_SKY_HORIZON, (0, ground_y - int(h * 0.12), w, int(h * 0.12)))
+    pygame.draw.rect(surf, COLOR_GUN_GROUND, (0, ground_y, w, h - ground_y))
+
+    # 雲
+    for cx, cy in ((w * 0.22, h * 0.22), (w * 0.68, h * 0.16)):
+        for dx, r in ((-int(w * 0.05), int(w * 0.045)), (0, int(w * 0.06)), (int(w * 0.05), int(w * 0.045))):
+            pygame.draw.circle(surf, COLOR_GUN_CLOUD, (int(cx + dx), int(cy)), max(2, r))
+
+    # 鳥（定番の「M字」シルエット＋小さな本体）
+    def bird(bx, by, scale):
+        r = max(3, int(w * 0.05 * scale))
+        pygame.draw.lines(surf, COLOR_GUN_BIRD_WING, False, [
+            (bx - r * 1.6, by - r * 0.3), (bx, by + r * 0.5), (bx + r * 1.6, by - r * 0.3),
+        ], max(2, r // 3))
+        pygame.draw.circle(surf, COLOR_GUN_BIRD, (int(bx), int(by)), max(2, int(r * 0.35)))
+
+    bird(w * 0.35, h * 0.42, 1.1)
+    bird(w * 0.62, h * 0.55, 0.8)
+
+    # 照準（十字）
+    rx, ry = int(w * 0.78), int(h * 0.32)
+    rr = max(3, int(w * 0.06))
+    pygame.draw.circle(surf, COLOR_GUN_RETICLE, (rx, ry), rr, max(1, rr // 6))
+    pygame.draw.line(surf, COLOR_GUN_RETICLE, (rx - rr - 4, ry), (rx - 2, ry), 2)
+    pygame.draw.line(surf, COLOR_GUN_RETICLE, (rx + 2, ry), (rx + rr + 4, ry), 2)
+    pygame.draw.line(surf, COLOR_GUN_RETICLE, (rx, ry - rr - 4), (rx, ry - 2), 2)
+    pygame.draw.line(surf, COLOR_GUN_RETICLE, (rx, ry + 2), (rx, ry + rr + 4), 2)
+
+
 def _draw_coming_soon(surf, w, h):
     """準備中ゲーム用のプレースホルダ（?マークと点線枠）。"""
     surf.fill((18, 18, 24))
@@ -553,9 +628,11 @@ _DRAWERS = {
     "ice_climber": _draw_ice_climber,
     "snake": _draw_snake,
     "puyo_puyo": _draw_puyo_puyo,
+    "duck_hunt": _draw_duck_hunt,
     "space_invaders": _draw_space_invaders,
     "breakout": _draw_breakout,
     "wagyan_land": _draw_wagyan_land,
     "pinball": _draw_pinball,
     "mario_kart": _draw_mario_kart,
+    "ika_jump": _draw_ika_jump,
 }
